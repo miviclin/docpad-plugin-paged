@@ -230,6 +230,7 @@ module.exports = (BasePlugin) ->
 				numberOfPages = meta.get('pageCount') or 1
 				pageSize = meta.get('pageSize') or 1
 				lastDoc = pageSize * numberOfPages
+				pagesOutBasePath = meta.get('pagesOutBasePath') or ''
 
 				# if pagedCollection is specified then use that to determine number of pages
 				if meta.get('pagedCollection')
@@ -272,7 +273,8 @@ module.exports = (BasePlugin) ->
 					[1...numberOfPages].forEach (pageNumber) ->  addTask (complete) ->
 						# Prepare our new page
 						pageFilename = "#{basename}-#{pageNumber}.#{extension}"
-						pageOutFilename = "#{outBasename}.#{pageNumber}.#{outExtension}"
+						pageOutPath = "#{pagesOutBasePath}#{outBasename}."
+						pageOutFilename = "#{pageOutPath}#{pageNumber}.#{outExtension}"
 						pageRelativePath = relativePath.replace(filename, pageFilename)
 
 						# Log
