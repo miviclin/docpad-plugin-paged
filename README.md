@@ -183,6 +183,62 @@ pageSize: 1
 ```
 
 
+### Example: Specifying a Base Path for the Generated Pages
+
+If we create a `src/documents/posts.html.eco` file that pages out our `posts` custom collection, the default behaviour generates the following files, as shown in a previous example (Paging a Collection Listing):
+
+`out/posts.html`  
+`out/posts.1.html`  
+`out/posts.2.html`  
+`out/posts.3.html`  
+
+If we specify `pagesOutBasePath: 'pages/'` in the document's metadata, we get the following output files instead:
+
+`out/posts.html`  
+`out/pages/posts.1.html`  
+`out/pages/posts.2.html`  
+`out/pages/posts.3.html`  
+
+``` erb
+---
+title: 'Home'
+layout: 'default'
+isPaged: true
+pagedCollection: 'posts'
+pageSize: 3
+pagesOutBasePath: 'pages/'
+---
+```
+
+
+### Example: Naming the Generated Pages with Numbers Only
+In the previous example (Specifying a Base Path for the Generated Pages), the following files would be generated:
+
+`out/posts.html`  
+`out/pages/posts.1.html`  
+`out/pages/posts.2.html`  
+`out/pages/posts.3.html`  
+
+If we specify `outputNumbersOnly: true` in the document's metadata, we get the following output files instead:
+
+`out/posts.html`  
+`out/pages/1.html`  
+`out/pages/2.html`  
+`out/pages/3.html`  
+
+``` erb
+---
+title: 'Home'
+layout: 'default'
+isPaged: true
+pagedCollection: 'posts'
+pageSize: 3
+pagesOutBasePath: 'pages/'
+outputNumbersOnly: true
+---
+```
+
+
 <!-- HISTORY/ -->
 
 ## History
